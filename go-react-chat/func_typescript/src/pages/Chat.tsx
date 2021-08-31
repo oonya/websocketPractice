@@ -12,7 +12,7 @@ export const Chat: React.VFC<{id: string}> = ({
   
   React.useEffect(() => {
     console.log("effect")
-    const ws = new WebSocket("ws://localhost:8080/ws");
+    const ws = new WebSocket("ws://localhost:8080/ws/" + id);
     socketRef.current = new Socket(ws)
 
     socketRef.current.on("connect", onConnect)

@@ -1,5 +1,18 @@
 package main
 
+// uriとhubを対に
+type HubFactory struct {
+	hubs map[string]*Hub
+}
+
+// uri -> chat_group_id
+func (hf *HubFactory) getHub(uri string) *Hub {
+	if hf.hubs[uri] == nil {
+		hf.hubs[uri] = newHub()
+	}
+	return hf.hubs[uri]
+}
+
 type Hub struct {
 	clients    map[*Client]bool
 	broadcast  chan []byte
